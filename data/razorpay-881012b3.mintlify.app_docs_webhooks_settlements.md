@@ -1,0 +1,64 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://razorpay-881012b3.mintlify.site/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Settlements Webhook Events
+
+> List of Settlements webhook events along with sample payloads.
+
+<div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:"0.35rem 0.9rem",border:"1px solid rgba(128,128,128,0.28)",borderRadius:"0.5rem",padding:"0.45rem 0.75rem",margin:"0 0 1.25rem",fontSize:"0.875rem"}}>
+  <span style={{fontWeight:600}}>Available in</span>
+  <span>🇮🇳 India</span>
+  <span>🇲🇾 Malaysia</span>
+  <span>🇸🇬 Singapore</span>
+  <span>🇺🇸 United States</span>
+</div>
+
+Track settlements by subscribing to settlement webhook events, which notify when funds are processed and settled to your account.
+
+### Settlement Processed
+
+<Info>
+  **Handy Tips**
+
+  * The `settlement.processed` event is triggered **after** Razorpay has successfully transferred funds to your bank account.
+  * The settlement payload includes key financial details such as the settlement amount, fees deducted, applicable tax, UTR (Unique Transaction Reference) and the settlement period.
+  * Use UTR to reconcile settlement funds received from Razorpay against your bank statement.
+  * Settlement amounts are always provided in the smallest currency unit (for example, paise for INR, cents for USD).
+</Info>
+
+<Warning>
+  **Watch Out!**
+
+  The `processed` status confirms the initiation of fund transfer, but does not mean that funds have been credited to your account. The amount will reflect in your bank account after the standard NEFT/RTGS/IMPS timeline, which can take up to **3 hours**.
+</Warning>
+
+Given below is the sample payload for Settlement webhook events.
+
+<CodeGroup>
+  ```json settlement.processed theme={null}
+  {
+    "entity": "event",
+    "account_id": "acc_PR7UDve9UNcOxW",
+    "event": "settlement.processed",
+    "contains": [
+      "settlement"
+    ],
+    "payload": {
+      "settlement": {
+        "entity": {
+          "id": "setl_Rf8uva1MU98B4l",
+          "entity": "settlement",
+          "amount": 1524,
+          "status": "processed",
+          "fees": 0,
+          "tax": 0,
+          "utr": "AXISCN1153863727",
+          "created_at": 1763019089
+        }
+      }
+    },
+    "created_at": 1763021990
+  }
+  ```
+</CodeGroup>

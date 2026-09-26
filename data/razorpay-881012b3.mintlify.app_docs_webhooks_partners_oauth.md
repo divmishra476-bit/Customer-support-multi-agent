@@ -1,0 +1,48 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://razorpay-881012b3.mintlify.site/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Partners OAuth Webhook Events
+
+> List of Partners OAuth webhook events along with sample payloads.
+
+<div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:"0.35rem 0.9rem",border:"1px solid rgba(128,128,128,0.28)",borderRadius:"0.5rem",padding:"0.45rem 0.75rem",margin:"0 0 1.25rem",fontSize:"0.875rem"}}>
+  <span style={{fontWeight:600}}>Available in</span>
+  <span>🇮🇳 India</span>
+  <span>🇲🇾 Malaysia</span>
+</div>
+
+Razorpay OAuth is a token-based authentication method where you can obtain an access token with the consent of the user, without them having to compromise their API key secret. OAuth lets the user decide who can access what level of resources within their Razorpay account.
+
+## List of OAuth Webhook Events
+
+The table below lists the webhook events available for OAuth partners.
+
+| Event Name                          | Description                                                                |
+| ----------------------------------- | -------------------------------------------------------------------------- |
+| `account.app.authorization_revoked` | Triggered when the sub-merchant revokes access to the partner application. |
+
+## Sample Payloads
+
+Given below is the sample payload for the Partners Oauth webhook event.
+
+### Account App Authorization Revoked
+
+<CodeGroup>
+  ```json account.app.authorization_revoked theme={null}
+  {
+    "event": "account.app.authorization_revoked",
+    "account_id": "acc_Dhk2qDbmu6FwZH", // merchant account id
+    "contains": [],
+    "created_at": 1678282666
+  }
+  ```
+</CodeGroup>
+
+<Warning>
+  **Watch Out!**
+
+  * If you have changed your webhook secret, remember to use the old secret for webhook signature validation while retrying older requests. Using the new secret will lead to a signature mismatch.
+
+  * While generating a signature at your end, ensure that the webhook body is passed as an argument in the **raw webhook request body**. **Do not parse or cast the webhook request body**.
+</Warning>
